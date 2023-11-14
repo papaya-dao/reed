@@ -1,5 +1,6 @@
+import * as _stacks_transactions_dist_clarity_types_principalCV from '@stacks/transactions/dist/clarity/types/principalCV';
 import { ParsedTransactionResult, Simnet } from '@hirosystems/clarinet-sdk';
-import { ClarityValue, ContractPrincipalCV } from '@stacks/transactions';
+import { ClarityValue } from '@stacks/transactions';
 
 declare const TESTNET_ZERO_ADDRESS = "ST000000000000000000002AMW42H";
 interface ExtendedParsedTransactionResult extends ParsedTransactionResult {
@@ -59,7 +60,7 @@ declare class ExtendedSimnet implements Simnet {
     callReadOnlyFn(contract: string, method: string, args: ClarityValue[], sender?: string): ExtendedParsedTransactionResult;
     callPublicFn(contract: string, method: string, args: ClarityValue[], sender?: string): ExtendedParsedTransactionResult;
     getPrincipal(): string;
-    getDeployedContractPrincipal(contractName: string): ContractPrincipalCV;
+    getDeployedContractPrincipal(contractName: string): _stacks_transactions_dist_clarity_types_principalCV.ContractPrincipalCV;
     _parseSender(sender: string): string;
 }
 declare const isAddress: (maybeAddress: string) => boolean;
@@ -72,7 +73,7 @@ declare class ClarityContract {
     private readonly _extends;
     protected constructor(simnet: ExtendedSimnet, contractName: string, sender?: string, _debug?: boolean, _extends?: any);
     getSender(): string;
-    getPrincipal(): ContractPrincipalCV;
+    getPrincipal(): _stacks_transactions_dist_clarity_types_principalCV.ContractPrincipalCV;
     private tryGetFnInterface;
     static create<T extends ClarityContract>(simnet: ExtendedSimnet, contractName: string, sender?: string, _debug?: boolean, _extends?: T | null): ClarityContract;
     connect(sender: string | undefined): this;

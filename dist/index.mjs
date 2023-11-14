@@ -163,11 +163,6 @@ var ClarityContract = class _ClarityContract {
       return kebabToCamel(fn.name) == maybeFnName;
     });
   }
-  // private transformArguments(functionInterface: any, args: any[]) {
-  //   return functionInterface.args.map((arg, i) => {
-  //     return CVMap.transformArgument(args[i], arg.type)
-  //   });
-  // }
   static create(simnet, contractName, sender = "wallet_1", _debug = false, _extends = null) {
     const instance = new this(simnet, contractName, sender, _debug, _extends);
     return new Proxy(instance, {
