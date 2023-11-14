@@ -2,18 +2,18 @@
 ## Installation
 `reed` is a test framework for `@hirosystems/clarinet-sdk` with the goal of providing a developer experience familiar to Ethereum developers.
 - npm
-```
+```bash
 npm install --save-dev @papaya-dao/reed
 ```
 - yarn
-```
+```bash
 yarn add -D @papaya-dao/reed
 ```
 ## Clarinet SDK API Differences
 
 The `ExtendedSimnet` class extends the `Simnet` class provided by the `@hirosystems/clarinet-sdk` package. It provides identical and additional methods and properties for interacting with the simulated network. `ExtendedSimnet` uses the Proxy pattern to override the methods of the `Simnet` class, providing more flexibility.
 
-```
+```typescript
 declare const simnet: Simnet;
 const params: ExtendedSimnetParams = { simnet, expect };
 const simNet = ExtendedSimnet.create(params);
@@ -29,7 +29,7 @@ const getSymbolResponse = simNet.callReadOnlyFn(
 
 The `connect` method in `ExtendedSimnet` allows you to connect to the Simnet network with a specified sender. `callReadOnlyFn` and `callPublicFn` methods on `ExtendedSimnet` are overridden to use the sender specified in the `connect` method unless overridden by passing sender as the last argument as specified by the `Simnet` api.
 
-```
+```typescript
 declare const simnet: Simnet;
 const params: ExtendedSimnetParams = { simnet, expect }; 
 const simNet = ExtendedSimnet.create(params);// wallet_1 conntected by default
@@ -42,7 +42,7 @@ const getSymbolResponse = simNet.callReadOnlyFn(
 );
 ```
 The connect method implements the builder pattern for method chaining:
-```
+```typescript
 const getSymbolResponse = simNet.connect('wallet_2') // connect a different sender
   .callReadOnlyFn(
     "my-sip-010-token",
@@ -64,7 +64,7 @@ Returns the principal of a deployed contract.
 ### `ExtendedParsedTransactionResult`
 The `ExtendedParsedTransactionResult` class extends the `ParsedTransactionResult` class from the `@hirosystems/clarinet-sdk` package. It provides an `expect` method that allows expectation chaining on the transaction result.
 
-```
+```typescript
 const extendedSimnet = ExtendedSimnet.create(params);
 const params: ExtendedSimnetParams = { simnet, expect }; // wondering why we pass expect?
 extendedSimnet
@@ -77,7 +77,7 @@ extendedSimnet
 
 The `ClarityContract` class implements the proxy design pattern, which automatically tries to convert `kebab-case` stacks clarity contract names to `camelCase` and match the proxy prop against these functions to automatically dispatch `callReadOnlyFn` or `callPublicFn`
 
-```
+```typescript
 [...]
 static create<T extends ClarityContract>(simnet: ExtendedSimnet, contractName: string, sender: string = 'wallet_1', _debug: boolean = false, _extends: T|null = null) {
       const instance = new this(simnet, contractName, sender, _debug, _extends);
@@ -105,7 +105,7 @@ static create<T extends ClarityContract>(simnet: ExtendedSimnet, contractName: s
 ```
 
 This allows you to define and interact with ClarityContracts like so:
-```
+```typescript
 export interface MyToken {
     getBalance(owner: PrincipalCV): ExtendedParsedTransactionResult;
     getTotalSupply(): ExtendedParsedTransactionResult;
