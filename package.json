@@ -1,0 +1,49 @@
+{
+  "name": "@papaya-dao/reed",
+  "version": "0.0.1",
+  "description": "Reed makes playing with the Clarinet SDK easier!",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test:dev": "vitest run -- --manifest ./tests/test-contracts/Clarinet.toml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/papaya-dao/reed.git"
+  },
+  "keywords": [
+    "Stacks",
+    "Clarity",
+    "Testing",
+    "Clarinet",
+    "SDK",
+    "Clarinet",
+    "Testing",
+    "Framework"
+  ],
+  "author": "dreadful-dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/papaya-dao/reed/issues"
+  },
+  "homepage": "https://github.com/papaya-dao/reed#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@hirosystems/clarinet-sdk": "^1.1.0",
+    "@hirosystems/stacks-devnet-js": "^2.0.0",
+    "@stacks/transactions": "^6.9.0",
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6",
+    "vitest-environment-clarinet": "^1.0.3",
+    "vitest-github-actions-reporter": "^0.10.0"
+  }
+}
