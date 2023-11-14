@@ -1,5 +1,5 @@
 import { ParsedTransactionResult, Simnet } from "@hirosystems/clarinet-sdk";
-import { Cl, StandardPrincipalCV, UIntCV, BooleanCV, ClarityValue, PrincipalCV, ContractPrincipalCV, getCVTypeString, IntCV, TupleCV } from "@stacks/transactions";
+import { Cl, ClarityValue } from "@stacks/transactions";
 import { createAddress } from "@stacks/transactions";
 
 export const TESTNET_ZERO_ADDRESS = 'ST000000000000000000002AMW42H';
@@ -196,88 +196,6 @@ export const range = (n: number): number[] => {
 
 const kebabToCamel = (str: string) => str.split('-').map((s, i) => i > 0 ? `${s[0].toUpperCase()}${s.slice(1)}` : s).join('');
 
-// export const SIP010StandardTestSuite = (simNet: ExtendedSimnet, tokenDetails: any) => {
-//   const { contractName, tokenName, tokenSymbol, decimals, uri } = tokenDetails;
-  
-//   describe("sip-010-trait", () => {
-//     it("specifies token uri", async () => {
-//       const getSymbolResponse = simNet.callPublicFn(
-//         contractName,
-//         "get-token-uri",
-//         [],
-//       );
-      
-//       const expectedUri = Cl.some(Cl.stringUtf8(uri));
-//       expect(getSymbolResponse.result).toBeOk(expectedUri);
-//     });
-
-//     it("specifies token symbol", async () => {
-//       const getSymbolResponse = simNet.callReadOnlyFn(
-//         contractName,
-//         "get-symbol",
-//         [],
-//       );
-      
-//       const expectedSymbol = Cl.stringAscii(tokenSymbol);
-//       expect(getSymbolResponse.result).toBeOk(expectedSymbol);
-//     });
-
-//     it("specifies token name", async () => {
-//       const getSymbolResponse = simNet.callReadOnlyFn(
-//         contractName,
-//         "get-name",
-//         [],
-//       );
-      
-//       const expectedSymbol = Cl.ok(Cl.stringAscii(tokenName));
-//       expect(getSymbolResponse.result).toStrictEqual(expectedSymbol);
-//     });
-
-//     it("specifies decimals", async () => {
-//       const getSymbolResponse = simNet.callReadOnlyFn(
-//         contractName,
-//         "get-decimals",
-//         [],
-//       );
-      
-//       const expectedDecimals = Cl.ok(Cl.uint(decimals));
-//       expect(getSymbolResponse.result).toStrictEqual(expectedDecimals);
-//     });
-
-//     it("specifies total token supply", async () => {
-//       const getSymbolResponse = simNet.callReadOnlyFn(
-//         contractName,
-//         "get-total-supply",
-//         [],
-//       );
-      
-//       const expectedSupply = Cl.uint(0);
-//       expect(getSymbolResponse.result).toBeOk(expectedSupply);
-//     });
-
-//     it("get-balance returns balance of principal", async () => {
-//       const getSymbolResponse = simNet.callReadOnlyFn(
-//         contractName,
-//         "get-balance",
-//         [Cl.standardPrincipal(simNet.getPrincipal())],
-//       );
-      
-//       const expectedBalance = Cl.uint(0)
-//       expect(getSymbolResponse.result).toBeOk(expectedBalance);
-//     });
-
-//     it("transfer fails if sender is not transaction sender", async () => {
-//       const transferResponse = simNet.callPublicFn(
-//         contractName,
-//         "transfer",
-//         [Cl.uint(100), Cl.standardPrincipal('ST000000000000000000002AMW42H'), Cl.standardPrincipal(simNet.getPrincipal()), Cl.some(Cl.bufferFromUtf8('test'))],
-//       );
-      
-//       expect(transferResponse.result).toBeErr(Cl.uint(4));
-//     });
-//   });
-// }
-
 export class ClarityContract {
     [x: string]: any;
     protected simnet: ExtendedSimnet;
@@ -311,12 +229,6 @@ export class ClarityContract {
           return kebabToCamel(fn.name) == maybeFnName;
         });
     }
-
-    // private transformArguments(functionInterface: any, args: any[]) {
-    //   return functionInterface.args.map((arg, i) => {
-    //     return CVMap.transformArgument(args[i], arg.type)
-    //   });
-    // }
 
     static create<T extends ClarityContract>(simnet: ExtendedSimnet, contractName: string, sender: string = 'wallet_1', _debug: boolean = false, _extends: T|null = null) {
       const instance = new this(simnet, contractName, sender, _debug, _extends);

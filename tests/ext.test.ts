@@ -1,10 +1,9 @@
 import { Simnet } from "@hirosystems/clarinet-sdk";
 import { ExtendedSimnet, ExtendedSimnetParams, isAddress, range } from "../src";
+import { ClarityType } from "@stacks/transactions";
+
 import { describe, expect, it } from "vitest";
-import { Cl, ClarityType } from "@stacks/transactions";
-
 declare const simnet: Simnet;
-
 const params: ExtendedSimnetParams = { simnet, expect };
 
 describe("isAddress", () => {
