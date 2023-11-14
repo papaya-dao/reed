@@ -1,6 +1,6 @@
 {
   "name": "@papaya-dao/reed",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Reed makes playing with the Clarinet SDK easier!",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
