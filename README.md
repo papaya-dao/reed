@@ -14,6 +14,7 @@ yarn add -D @papaya-dao/reed
 The `ExtendedSimnet` class extends the `Simnet` class provided by the `@hirosystems/clarinet-sdk` package. It provides identical and additional methods and properties for interacting with the simulated network. `ExtendedSimnet` uses the Proxy pattern to override the methods of the `Simnet` class, providing more flexibility.
 
 ```typescript
+import { ExtendedSimnet, ExtendedSimnetParams } from "@papaya-dao/reed"
 declare const simnet: Simnet;
 const params: ExtendedSimnetParams = { simnet, expect };
 const simNet = ExtendedSimnet.create(params);
